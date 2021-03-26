@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    flex-direction: row wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.genreCard {
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+}
+
+.genreImage {
+    width: 8em;
+    height: 9em;
+}
