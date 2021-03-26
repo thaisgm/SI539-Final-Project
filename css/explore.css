@@ -1,0 +1,12 @@
+.musicStreamLogo{
+    width: 11em;
+    height: 9em;
+    margin: 1em;
+}
+
+.musicLogos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
