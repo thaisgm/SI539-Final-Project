@@ -26,15 +26,32 @@
         </header>
         <main>
             <h1>Explore!</h1>
-
-            <p class="text">Do you prefer Spotify or apple music?</p>
-            <div class="musicLogos">
-                <img id = "spotify" src="images/SpotifyLogo.png" alt="logo" class = "musicStreamLogo">
-                <img id = "appleMusic" src="images/AppleMusic.png" alt="logo" class = "musicStreamLogo">    
-            </div>
-            <p class="text">Personally, I prefer to use Spotify!</p>
             <p class="text">This application will use the Spotify API in order to provide music recommendations.</p>
-            <p class="text">Learn more about Spotify for developers <a href="https://developer.spotify.com/discover/">here</a>. This link provides detailed information into how to use the Spotify API and the various use cases.</p>
+            <p class="text">Learn more about Spotify for developers <a href="https://developer.spotify.com/discover/">here</a>.</p>
+            <form id="genreForm">
+                <legend>Which genre would you like to explore?</legend><br>
+                    <select name="genreDropdown" id="genreDropdown">
+                        <option value="alternative">Alternative</option>
+                        <option value="country">Country</option>
+                        <option value="jazz">Jazz</option>
+                        <option value="rock">Rock</option>
+                        <option value="electronic">Electronic</option>
+                        <option value="k-pop">K-pop</option>
+                        <option value="funk">Funk</option>
+                        <option value="folk">Folk</option>
+                        <option value="metal">Metal</option>
+                        <option value="soul">Soul</option>
+                        <option value="hip-hop">Hip-Hop</option>
+                        <option value="pop">Pop</option>
+                        <option value="reggae">Reggae</option>
+                        <option value="soundtracks">Soundtracks</option>
+                        <option value="punk-rock">Punk-Rock</option>
+                        <option value="r-n-b">RNB</option>
+                        <option value="r-n-b">RNB</option>
+                        <option value="rock-n-roll">Rock-n-Roll</option>
+                    </select>
+                    <div class="submit"><input type="submit" value="Submit" ></div>
+            </form>
         <script src="js/explorejs.js"></script>
         </main>
         <footer>
