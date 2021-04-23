@@ -52,7 +52,19 @@
                     </select>
                     <div class="submit"><input type="submit" value="Submit" ></div>
             </form>
-        <script src="js/explorejs.js"></script>
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+        <script>
+            $('#genreForm').submit(function(event) {
+                event.preventDefault();
+                alert('SUBMITTED')
+                    $.ajax({
+                    url: './explore.py',
+                    context: document.body
+                    }).done(function() {
+                    alert('finished python script');;
+                    });
+            })
+        </script>
         </main>
         <footer>
             <p>University of Michigan School of Information <br/>
