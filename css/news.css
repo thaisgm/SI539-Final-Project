@@ -89,7 +89,7 @@ a:visited {
 
 body {
     /* The image used */
-    background-image: url("/Users/thaisgonzalez/Desktop/SI_539/SI_539_Final_Project/newsImages/bg-gradient.jpeg");
+    background-image: url("https://raw.githubusercontent.com/thaisgm/SI539-Final-Project/main/newsImages/bg-gradient.jpeg");
   
     /* Set a specific height */
     min-height: 500px;
@@ -116,11 +116,6 @@ body {
 .nav_item > a:visited {
     text-decoration: none;
     color: #ffaf47;
-}
-
-.active-page {
-    font-weight: bold;
-    background-color: #ffff88;
 }
 
 .footer {

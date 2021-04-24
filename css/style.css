@@ -46,7 +46,7 @@ a.skip{
 
   .active-page {
     font-weight: bold;
-    background-color: #ffaf47;
+    text-transform: uppercase;  
   }
 
   .nav_item > a {
