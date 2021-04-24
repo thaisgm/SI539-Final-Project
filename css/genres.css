@@ -17,9 +17,32 @@
     margin: 1em;
 }
 
+.genreText {
+    text-decoration: underline;
+    margin-bottom: 3px;
+    color: #ffaf47;
+}
+
 .genreImage {
     width: 8em;
     height: 9em;
+    position: relative;
+
+}
+
+.genreImage:hover {
+    opacity: 0.25;
+}
+
+.artist {
+    display: none;
+    position: absolute;
+    font-weight: 900;
+    opacity: 1;
+}
+
+.artist:hover {
+    opacity: 1;
 }
 
 @media screen and (min-width: 768px) {
@@ -40,5 +63,4 @@
     .genreCard {
         margin: 0.5em;
     }
-
 }

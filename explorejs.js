@@ -14,58 +14,71 @@ class Album {
     }
 }
 
-function spotify_authorization_request() {
+function spotify_authorization_request_callback(url, callback) {
 
-    redirect_uri = 'https://thaisgm.github.io/SI539-Final-Project/';
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", url);
+    
+    xhr.setRequestHeader("Authorization", "Basic YWU4ZjFmYzkwZGUwNDkxMWJmYzJlYmY1NDY1MTA0ZWQ6NDkzYzkyNzY0ZDUzNDI1NzkyN2Q2YmY2ZjFiNjU0YTc");
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-    request = "https://accounts.spotify.com/authorize?client_id=" + CLIENT_ID + "&redirect_uri=" + redirect_uri + "&response_type=token";
+    xhr.onreadystatechange = function() {
+       if (xhr.readyState === 4) {
+           if(typeof callback === "function") {
+                console.log(xhr.status);
+                console.log('Object, ', xhr.responseText);
+                callback.apply(xhr);
+           }
+       }
+    }
 
-    fetch(request)
-    .then(response => response.json())
-    .then(data => console.log(data));
+    var data = "grant_type=client_credentials";
+    
+    xhr.send(data);
+
 
 }
 
-/*
+
 function spotify_api_request(access_token, genre){
-    headers = {
-        'Authorization': 'Bearer {}'.format(access_token)
-        }
     
-        params = (
-            ('seed_genres', genre),
-            ('min_energy', '0.4'),
-            ('min_popularity', '50'),
-            ('market', 'US'),
-            ('limit', '10')
-        );
-    
-        get_request = requests.get('https://api.spotify.com/v1/recommendations', headers=headers, params=params);
-    
-        response_data = json.loads(get_request.content);
-    
-        var x = 0;
-    
-        all_albums = [];
-    
-        while (x < 10) {
-            spotify_link = response_data['tracks'][x]['external_urls']['spotify'];
-            album_name = response_data['tracks'][x]['album']['name'];
-            artist_name = response_data['tracks'][x]['album']['artists'][0]['name'];
-            release_date = response_data['tracks'][x]['album']['release_date'];
-            new_album = Album(album_name, artist_name, release_date, spotify_link);
-            all_albums.append(new_album);
-            x += 1
-                    
-        }
+    var url = "https://api.spotify.com/v1/recommendations?limit=10&market=US&seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=" + genre + "&seed_tracks=0c6xIDDpzE81m2q797ordA&min_energy=0.4&min_popularity=50";
 
-        
-        for (i in all_albums) {
-            console.log('Info: ', i.artist_name);
-            console.log('----------------------')
-        };
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", url);
+    
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("Authorization", "Bearer " + access_token + "");
+    
+    xhr.onreadystatechange = function () {
+       if (xhr.readyState === 4) {
+          console.log(xhr.status);
+          var spotify_object = JSON.parse(xhr.responseText)
+          console.log('SPOTIFY, ', spotify_object.tracks);
+          const newItem = document.createElement('ol');
+
+          newItem.innerHTML = 
+          '<ol><li>' + spotify_object.tracks[0].album.name + ' by ' + spotify_object.tracks[0].artists[0].name + ' (Listen here: <a>' +  spotify_object.tracks[0].external_urls.spotify + '</a>)!' + 
+          '</li><li>' + spotify_object.tracks[1].album.name + ' by ' + spotify_object.tracks[1].artists[0].name + ' (Listen here: <a>' +  spotify_object.tracks[1].external_urls.spotify + '</a>)!' + 
+          '</li><li>' + spotify_object.tracks[2].album.name + ' by ' + spotify_object.tracks[2].artists[0].name + ' (Listen here: <a>' +  spotify_object.tracks[2].external_urls.spotify + '</a>)!' + 
+          '</li><li>' + spotify_object.tracks[3].album.name + ' by ' + spotify_object.tracks[3].artists[0].name + ' (Listen here: <a>' +  spotify_object.tracks[3].external_urls.spotify + '</a>)!' + 
+          '</li><li>' + spotify_object.tracks[4].album.name + ' by ' + spotify_object.tracks[4].artists[0].name + ' (Listen here: <a>' +  spotify_object.tracks[4].external_urls.spotify + '</a>)!' + 
+          '</li><li>' + spotify_object.tracks[5].album.name + ' by ' + spotify_object.tracks[5].artists[0].name + ' (Listen here: <a>' +  spotify_object.tracks[5].external_urls.spotify + '</a>)!' + 
+          '</li><li>' + spotify_object.tracks[6].album.name + ' by ' + spotify_object.tracks[6].artists[0].name + ' (Listen here: <a>' +  spotify_object.tracks[6].external_urls.spotify + '</a>)!' + 
+          '</li><li>' + spotify_object.tracks[7].album.name + ' by ' + spotify_object.tracks[7].artists[0].name + ' (Listen here: <a>' +  spotify_object.tracks[7].external_urls.spotify + '</a>)!' + 
+          '</li><li>' + spotify_object.tracks[8].album.name + ' by ' + spotify_object.tracks[8].artists[0].name + ' (Listen here: <a>' +  spotify_object.tracks[8].external_urls.spotify + '</a>)!' + 
+          '</li><li>' + spotify_object.tracks[9].album.name + ' by ' + spotify_object.tracks[9].artists[0].name + ' (Listen here: <a>' +  spotify_object.tracks[0].external_urls.spotify + '</a>)!' + 
+          '</li></ol>';
+
+          form.parentNode.replaceChild(newItem, form);
+
+       }};
+    
+    xhr.send();
+    
+
 }
-*/
 
 form.addEventListener( "submit", function(event) {
     event.preventDefault();
@@ -74,13 +87,22 @@ form.addEventListener( "submit", function(event) {
     var genre_choice = dropdown.value;
     console.log('RESPONSE: ', genre_choice)
 
-    token = spotify_authorization_request();
 
-    setTimeout(function() { 
-        alert("Hello, your token is ready");
-        console.log('TOKEN: ', token);
+    var url = "https://accounts.spotify.com/api/token";
+    spotify_authorization_request_callback(url, function () {
+        var text  = this.responseText;
+        var tokenText = text.split(':')[1];
+        var token = tokenText.split('"')[1];
 
-    }, 3000);
+        console.log('TOKEN ', token);
+
+        var albums = spotify_api_request(token, genre_choice);
+
+        console.log('IDK, ', albums);
+
+
+    });
+
 
 
 });

@@ -10,6 +10,10 @@
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <link rel="stylesheet" type="text/css" href="css/genres.css">
 
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </header>
     <body>
         <a class = "skip" href="#main">Skip to Main Content</a>
@@ -24,56 +28,76 @@
                 </ul>
             </nav>
         </header>
-        <main>
-            <h1>Top 10 Genres of Music</h1>
+        <main id="main">
+            <h1 class="title">Top 10 Genres of Music</h1>
             <p class="text"> A music genre is a conventional category that identifies some pieces of music as belonging to a shared tradition or set of conventions. Below are a handful of the main genres of music; however, there are hundreds of different genres that have been influenced by each other and grown in time. </p>
             <div class="container">
                 <div class="column" id="main">
                     <div class="genreCard">
-                        <p>Blues</p>
+                        <p class="genreText">Blues</p>
+                        <span class="artist"> BB King </span>    
                         <img src="images/BBKing.jpg" alt="B.B. King" class = "genreImage">    
                     </div>
                     <div class="genreCard">
-                        <p>Classical</p>
+                        <p class="genreText">Classical</p>
+                        <span class="artist"> Beethoven </span>    
                         <img src="images/Beethoven.jpg" alt="Beethoven" class = "genreImage">    
                     </div>                    
                     <div class="genreCard">
-                        <p>Country</p>
+                        <p class="genreText">Country</p>
+                        <span class="artist"> George Strait </span>    
                         <img src="images/GeorgeStrait.png" alt="George Strait" class = "genreImage">    
                     </div>                    
                     <div class="genreCard">
-                        <p>Electronic</p>
+                        <p class="genreText">Electronic</p>
+                        <span class="artist"> Avicii </span>    
                         <img src="images/Avicii.jpg" alt="Avicii" class = "genreImage">    
                     </div>
                     <div class="genreCard">
-                        <p>Folk</p>
+                        <p class="genreText">Folk</p>
+                        <span class="artist"> Joni Mitchell </span>    
                         <img src="images/JoniMitchell.jpg" alt="Joni Mitchell" class = "genreImage">    
                     </div>
                 </div>
                 <div class="column">
                     <div class="genreCard">
-                        <p>Pop</p>
-                        <img src="images/Madonna.jpg" alt="Madonna" class = "genreImage">    
+                        <p class="genreText">Pop</p>
+                        <span class="artist"> Madonna </span>    
+                        <img src="images/Madonna.jpg" alt="Madonna" class = "genreImage">
                     </div>                    
                     <div class="genreCard">
-                        <p>Rock</p>
+                        <p class="genreText">Rock</p>
+                        <span class="artist"> Beatles </span>    
                         <img src="images/beatles.jpg" alt="Beatles" class = "genreImage">    
                     </div>
                     <div class="genreCard">
-                        <p>R&B</p>
+                        <p class="genreText">R&B</p>
+                        <span class="artist"> Aretha Franklin </span>    
                         <img src="images/ArethaFranklin.jpg" alt="Aretha Franklin" class = "genreImage">    
                     </div>
                     <div class="genreCard">
-                        <p>Rap</p>
+                        <p class="genreText">Rap</p>
+                        <span class="artist"> Tupac </span>    
                         <img src="images/Tupac.jpg" alt="Tupac" class = "genreImage">    
                     </div>
                     <div class="genreCard">
-                        <p>Reggae</p>
+                        <p class="genreText">Reggae</p>
+                        <span class="artist"> Bob Marley </span>    
                         <img src="images/BobMarley.jpg" alt="Bob Marley" class = "genreImage">    
                     </div>
                 </div>
             </div>
             <p class="text">According to the popular music streaming service Spotify, there are over 1,300 music genres in the world. For example, some popular genres not included above are K-pop, Alternative, or Dance. Some obscure ones include Black Sludge, Math Rock, Vaporwave and No Wave. At the end of the day, music is so prevalent in our society and is hard to confine to one box. Some people believe that genres are disappearing altogether as musicians seek unique influences and music styles blend in new ways! </p>
+            <script>
+                $(document).ready(function() {
+                    $(".genreImage").mouseover(function(){
+                        $('.artist').show();
+                    });
+                    $(".genreImage").mouseout(function(){
+                        $('.artist').hide();
+                    });
+                });
+            </script>
         </main>
         <footer>
             <p>University of Michigan School of Information <br/>
